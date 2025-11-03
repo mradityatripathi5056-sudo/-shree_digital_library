@@ -1,0 +1,17 @@
+workflows:
+  android-build:
+    name: Android build
+    environment:
+      flutter: stable
+      xcode: latest
+    scripts:
+      - name: Install packages
+        script: |
+          flutter pub get
+      - name: Build Android APK
+        script: |
+          flutter build apk --release --target-platform=android-arm,android-arm64,android-x64
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
+    publishing:
+      - provider: none
