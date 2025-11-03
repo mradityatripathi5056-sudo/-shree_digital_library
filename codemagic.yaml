@@ -1,19 +1,15 @@
 workflows:
   android-build:
-    name: Android Build
+    name: Android build
+    max_build_duration: 60
     environment:
       flutter: stable
-      xcode: latest
     scripts:
-      - name: Install dependencies
+      - name: Install packages
         script: |
           flutter pub get
       - name: Build APK
         script: |
-          flutter build apk --release
+          flutter build apk --release --target lib/main.dart
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
-    publishing:
-      email:
-        recipients:
-          - your-email@example.com
